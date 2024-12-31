@@ -1,38 +1,41 @@
 package com.example.spring_project.resources;
 
 import com.example.spring_project.models.Animal;
-import com.example.spring_project.repositories.AnimalRepository;
+import com.example.spring_project.services.AnimalService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/animals")
 public class AnimalResource {
-    private final AnimalRepository animalRepository;
+    private final AnimalService animalService;
 
-    public AnimalResource(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
+    public AnimalResource(AnimalService animalService) {
+        this.animalService = animalService;
     }
+
 
     @GetMapping
-    public List<String> getAnimals() {
-        return Arrays.asList("Dog", "Cat", "Elephant", "Tiger");
+    public ResponseEntity<List<Animal>> getAllAnimals() {
+        return ResponseEntity.ok(animalService.getAllAnimals());
     }
 
-    @GetMapping("/memory")
-    public List<Animal> getMemoryAnimals() {
-        return animalRepository.findByDeletedAtIsNull();
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Animal>> getAnimalById(@PathVariable Long id) {
+        return ResponseEntity.ok(animalService.getAnimalById(id));
     }
 
-    @PostMapping("/memory")
-    public void postMemoryAnimal() {
-        animalRepository.save(new Animal());
+    @PostMapping
+    public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
+        return ResponseEntity.ok(animalService.createAnimal(new Animal()));
     }
 
-    @DeleteMapping("/memory")
-    public void deleteMemoryAnimal() {
-        animalRepository.softDeleteById(animalRepository.findByDeletedAtIsNull().stream().findFirst().get().getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAnimal(@PathVariable Long id) {
+        animalService.deleteAnimal(id);
+        return ResponseEntity.noContent().build();
     }
 }
