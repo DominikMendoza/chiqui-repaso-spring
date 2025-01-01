@@ -1,5 +1,6 @@
 package com.example.spring_project.services;
 
+import com.example.spring_project.dtos.CreateAnimalDTO;
 import com.example.spring_project.models.Animal;
 import com.example.spring_project.repositories.AnimalRepository;
 import org.springframework.cache.annotation.CacheEvict;
@@ -29,7 +30,10 @@ public class AnimalService {
     }
 
     @CacheEvict(value = "animals", allEntries = true)
-    public Animal createAnimal(Animal animal) {
+    public Animal createAnimal(CreateAnimalDTO animalDTO) {
+        Animal animal = new Animal();
+        animal.setType(animalDTO.getType());
+        animal.setName(animalDTO.getName());
         return animalRepository.save(animal);
     }
 
