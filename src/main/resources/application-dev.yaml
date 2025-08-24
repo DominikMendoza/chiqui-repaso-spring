@@ -18,6 +18,14 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
 
+  quartz:
+    job-store-type: memory
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 5
+
 # Detailed logging for development
 logging:
   level:
