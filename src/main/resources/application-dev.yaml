@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/sample
+    url: jdbc:postgresql://localhost:5432/animal_db
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
@@ -14,6 +14,9 @@ spring:
     redis:
       host: localhost
       port: 6379
+
+  kafka:
+    bootstrap-servers: localhost:9092
 
 # Detailed logging for development
 logging:

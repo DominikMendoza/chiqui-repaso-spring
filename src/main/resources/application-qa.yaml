@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://qa-db-host:5432/sample_qa
+    url: jdbc:postgresql://qa-db-host:5432/animal_db
     driver-class-name: org.postgresql.Driver
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:qa_password}
