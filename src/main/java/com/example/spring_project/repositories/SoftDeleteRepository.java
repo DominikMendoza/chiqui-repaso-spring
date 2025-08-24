@@ -8,16 +8,16 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @NoRepositoryBean
-public interface SoftDeleteRepository<T, ID> extends JpaRepository<T, ID> {
+public interface SoftDeleteRepository<T, K> extends JpaRepository<T, K> {
 
     default void softDelete(T entity) {
-        if (entity instanceof Animal) {
-            ((Animal) entity).setDeletedAt(LocalDateTime.now());
+        if (entity instanceof Animal animal) {
+            animal.setDeletedAt(LocalDateTime.now());
             save(entity);
         }
     }
 
-    default void softDeleteById(ID id) {
+    default void softDeleteById(K id) {
         Optional<T> entity = findById(id);
         entity.ifPresent(this::softDelete);
     }

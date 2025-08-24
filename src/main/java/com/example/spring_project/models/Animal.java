@@ -1,8 +1,9 @@
 package com.example.spring_project.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,10 +11,11 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
-@EntityListeners(AuditableEntityListener.class)
 @NoArgsConstructor
+@EntityListeners(AuditableEntityListener.class)
 public class Animal implements Serializable {
     @Serial
     @Transient
