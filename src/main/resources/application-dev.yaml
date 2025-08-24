@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sample
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# Detailed logging for development
+logging:
+  level:
+    com.example.spring_project: DEBUG
+    org.springframework.cache: DEBUG
+    org.hibernate.SQL: WARN
+    root: INFO

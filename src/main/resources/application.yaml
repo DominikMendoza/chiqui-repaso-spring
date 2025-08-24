@@ -2,36 +2,13 @@ spring:
   application:
     name: animals-project
 
-  # PostgreSQL Configuration
-  datasource:
-    url: jdbc:postgresql://localhost:5432/sample
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: root
-
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-    show-sql: false
 
-  # Redis Configuration
-  data:
-    redis:
-      host: localhost
-      port: 6379
-
-# Logging Configuration
 logging:
-  level:
-    com.example.spring_project: INFO
-    org.springframework.cache: WARN
-    org.hibernate.SQL: ERROR
-    root: INFO
-
   pattern:
     console: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight(%-5level) %magenta([%thread]) %cyan(%logger{36}) : %m%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
