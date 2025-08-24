@@ -32,7 +32,7 @@ public class QuartzConfig {
     public Trigger miTriggerSimple() {
         return TriggerBuilder.newTrigger()
                 .forJob(miJobDetail())
-                .withIdentity("miSimpleTrigge", JOB_GROUP_NAME)
+                .withIdentity("miSimpleTrigger", JOB_GROUP_NAME)
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule()
                         .withIntervalInSeconds(10)
                         .repeatForever())

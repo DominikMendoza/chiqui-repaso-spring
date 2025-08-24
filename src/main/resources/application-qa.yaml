@@ -14,6 +14,21 @@ spring:
     redis:
       host: qa-redis-host
       port: 6379
+  kafka:
+    bootstrap-servers: qa-kafka-host:9092
+
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            tablePrefix: QRTZ_
+          threadPool:
+            threadCount: 5
 
 # Moderated logging for QA
 logging:
